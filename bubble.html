@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<style>
+    body {
+        background-color: #313131;
+    }
+    .node-title {
+        font: 20px sans-serif;
+    }
+    .node {
+        transition: all 0.3s ease-in-out;
+    }
+    .zoomed {
+        transform: scale(1.15);
+        transition: all 0.6s ease-in-out;
+        z-index: 10;
+    }
+    .faded {
+        opacity: 0.2;
+    }
+    .legend{
+        font:20px  sans-serif;
+        position: absolute;
+        right:40%;
+        bottom:10%;
+        width:100px;
+        color: #fff;
+    }
+    .legend img{
+        /*width:200px;*/
+        height:50px;
+    }
+    .legend-text{
+        margin-bottom: 0;
+    }
+    .legend span{
+        font:15px sans-serif;
+    }
+
+    .positive{
+        float: right;
+    }
+    .negative{
+        float: left;
+    }
+    svg text.node-title {
+        fill: white;
+        font-size: 13px;
+    }
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+    var diameter = 960,
+            format = d3.format(",d"),
+            color = d3.scale.category20c();
+
+    var bubble = d3.layout.pack()
+            .sort(null)
+            .size([diameter, diameter])
+            .padding(20);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .attr("class", "bubble");
+
+
+    var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .style("color", "white")
+            .style("padding", "8px")
+            .style("background-color", "rgba(0, 0, 0, 0.75)")
+            .style("border-radius", "6px")
+            .style("font", "12px sans-serif")
+            .text("tooltip");
+
+    d3.json("data.json", function(error, root) {
+        if (error) throw error;
+
+        var node = svg.selectAll(".node")
+                .data(bubble.nodes(classes(root))
+                        .filter(function(d) { return !d.children; }))
+                .enter().append("g")
+                .attr("class", function(d){
+                    return "node " + d.nodeType;
+                })
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                .on("mouseover", function(d) {
+                    svg.selectAll(".node").classed('faded', true);
+                    svg.selectAll(".node").select("circle").attr("transform", "scale(1)");
+                    svg.selectAll("."+d.nodeType).classed('faded', false);
+                    d3.select(this).select("circle").classed('zoomed', true);
+                    tooltip.html("<p>"+d.className +"</p>"+"<p>"+ "Positive Feedback" +':' +d.positive +"</p>"+"<p>"+"Negative Feedback" +':' +d.negative +"</p>");
+                    tooltip.style("visibility", "visible");
+                })
+                .on("mousemove", function() {
+                    return tooltip.style("top", (d3.event.pageY+15)+"px").style("left",(d3.event.pageX+10)+"px");
+                })
+                .on("mouseout", function(){
+                    svg.selectAll(".node").classed('faded', false);
+                    svg.selectAll(".node").select("circle").classed("zoomed", false);
+                    return tooltip.style("visibility", "hidden");
+                })
+
+        node.append("circle")
+                .attr("r", function(d) { return d.r; })
+                .style("fill", function(d) { return d.colorName; });
+
+        node.append("text")
+                .attr("dy", ".3em")
+                .attr("class", "node-title")
+                .style("text-anchor", "middle")
+                .text(function(d) { return d.className.substring(0, d.r / 3); });
+
+    });
+
+    // Returns a flattened hierarchy containing all leaf nodes under the root.
+    function classes(root) {
+        var classes = [];
+
+        function recurse(name, node) {
+            if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+            else classes.push(
+                    {
+                        colorName: node.colorName,
+                        positive: node.positive,
+                        negative: node.negative,
+                        className: node.name,
+                        nodeType: node.nodeType,
+                        value: node.positive + node.negative
+                    });
+        }
+
+        recurse(null, root);
+        return {children: classes};
+    }
+
+    d3.select(self.frameElement).style("height", diameter + "px");
+</script>
+<span class="legend">
+    <p class="legend-text">Legend</p>
+    <img src="battery_2.png"/>
+    <span class="negative">-ve</span>
+    <span class="positive">+ve</span>
+</span>
+</body>
+</html>

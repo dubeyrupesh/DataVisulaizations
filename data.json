@@ -1,0 +1,159 @@
+{
+  "name": "flare",
+  "children": [
+    {
+      "name": "A",
+      "positive": 56,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "B",
+      "positive": 45,
+      "negative": 23,
+      "nodeType":"yellow",
+      "colorName": "rgb(241, 195, 13)"
+    },
+    {
+      "name": "C",
+      "positive": 31,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "D",
+      "positive": 28,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "E",
+      "positive": 22,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "F",
+      "positive": 21,
+      "negative": 8,
+      "nodeType":"yellow",
+      "colorName": "rgb(241, 195, 13)"
+    },
+    {
+      "name": "G",
+      "positive": 17,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "H",
+      "positive": 17,
+      "negative": 18,
+      "nodeType":"orange",
+      "colorName": "rgb(231, 125, 33)"
+    },
+    {
+      "name": "I",
+      "positive": 16,
+      "negative": 19,
+      "nodeType":"orange",
+      "colorName": "rgb(231, 125, 33)"
+    },
+    {
+      "name": "J",
+      "positive": 11,
+      "negative": 36,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "K",
+      "positive": 9,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "L",
+      "positive": 8,
+      "negative": 0,
+      "nodeType":"green",
+      "colorName": "rgb(39, 173, 97)"
+    },
+    {
+      "name": "M",
+      "positive": 2,
+      "negative": 11,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "N",
+      "positive": 0,
+      "negative": 32,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "O",
+      "positive": 0,
+      "negative": 10,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "P",
+      "positive": 0,
+      "negative": 10,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "Q",
+      "positive": 0,
+      "negative": 6,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "R",
+      "positive": 0,
+      "negative": 13,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "S",
+      "positive": 0,
+      "negative": 5,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "T",
+      "positive": 0,
+      "negative": 6,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "U",
+      "positive": 0,
+      "negative": 14,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    },
+    {
+      "name": "V",
+      "positive": 0,
+      "negative": 8,
+      "nodeType":"red",
+      "colorName": "rgb(231, 75, 61)"
+    }
+  ]
+}
